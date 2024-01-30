@@ -1,0 +1,38 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.header {
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .logo-cont {
+        img {
+            width: 200px;
+            height: 150px;
+        }
+    }
+
+    .nav-links {
+        margin-right: 40px;
+        ul {
+            display: flex;
+            gap: 10px;
+            list-style: none;
+        }
+    }
+}
+
+.body {
+
+    .res-container {
+        height: 200px;
+        border: 1px solid black;
+        width: 200px;
+        margin-left: 10px;
+    }
+
+}
