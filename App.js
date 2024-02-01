@@ -1,10 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { restaurant } from "./data";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
+
 const Header = () => {
   return (
+    <div className="header-cont">
     <div className="header">
       <div className="logo-cont">
         <img
@@ -21,15 +24,30 @@ const Header = () => {
         </ul>
       </div>
     </div>
+    </div>
   );
 };
 
 
-const RestaurantContainer = () => (
-    <div>
-         <h3>Meghana Foods</h3>
-    </div>
-)
+const RestaurantContainer = (props) => {
+  const { resData } = props;
+  const {
+    cloudinaryImageId,
+    name,
+    avgRating,
+    cuisines,
+    costForTwo,
+    deliveryTime,
+  } = resData?.data;
+  return (<div className="rest-card">
+    <img className="rest-img" src={"https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/" + cloudinaryImageId} />
+      <h3>{name}</h3>
+      <h4>{cuisines.join(", ")}</h4>
+      <h4>{avgRating} stars</h4>
+      <h4>₹{costForTwo / 100} FOR TWO</h4>
+      <h4>{deliveryTime} minutes</h4>
+  </div>)
+}
 
 const searchStyle = {
     padding: "20px"
@@ -37,9 +55,15 @@ const searchStyle = {
 
 const Body = () => (
   <div className="body">
-    <div className="search" style={searchStyle}>Search</div>
+    <div className="search" style={searchStyle}>
+      <input type="text" placeholder="Search" className="input-text" />
+    </div>
     <div className="res-container">
-     <RestaurantContainer/>
+    {
+      restaurant.map((r)=>{
+        return <RestaurantContainer resData={r} />
+      })
+    }
     </div>
   </div>
 );
