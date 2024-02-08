@@ -76,8 +76,8 @@ input::placeholder {
     text-align: center;
 }
 
-@media screen and (min-width:10px) {
+@media screen and (min-width:1200px) {
     body {
-        zoom: 90%;
+       zoom:80%
     }
 }
