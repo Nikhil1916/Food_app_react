@@ -1,21 +1,33 @@
+import { useState } from "react";
 import restaurant from "../utils/data";
 import RestaurantCard from "./RestaurantCard";
 
 const searchStyle = {
     padding: "20px"
 }
-// console.log(restaurant);
-export default Body = () => (
+
+
+export default Body = () => {
+  const [restList , setRestList] = useState(restaurant);
+  const filterFnc = (val) => {
+    return Number(val?.data?.avgRating)>=4;
+  }
+
+  return (
     <div className="body">
       <div className="search" style={searchStyle}>
-        <input type="text" placeholder="Search" className="input-text" />
+        <button onClick={()=> {
+          const filteredList = restList?.filter(filterFnc);
+          setRestList(filteredList)
+        } }>Filter 4 stars</button>
       </div>
       <div className="res-container">
       {
-        restaurant.map((r)=>{
-          return <RestaurantCard resData={r} />
+        restList.map((r)=>{
+          return <RestaurantCard key={r?.data?.id} resData={r} />
         })
       }
       </div>
     </div>
   );
+};
