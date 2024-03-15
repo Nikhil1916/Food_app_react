@@ -76,9 +76,11 @@
     border: 1px solid lightgray;
 }
 
-.search {
+.filter {
     display: flex;
     justify-content: center;
+    gap: 30px;
+    align-items: center;
 }
 
 input::placeholder {
@@ -107,4 +109,28 @@ input::placeholder {
         gap: 5px;
     }
 
+}
+
+.filter-btn , .search-btn {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+}
+
+.search-box {
+    padding:5px 20px;
+    border: none;
+    border: 2px solid #f0f0f0;
+}
+
+.search {
+    display: flex;
+    gap: 10px;
+    outline: none;
+}
+
+button {
+    cursor: pointer;
 }
