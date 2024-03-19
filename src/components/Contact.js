@@ -2,7 +2,7 @@ import React from 'react'
 
 const Contact = () => {
   return (
-    <div>Contact.js</div>
+    <h1 style={{margin:'1rem'}}>Contact.js</h1>
   )
 }
 
