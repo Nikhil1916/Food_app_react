@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import SchimmerCard from "./SchimmerCard";
-import  { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import { Link } from "react-router-dom";
 
 const searchStyle = {
@@ -93,7 +93,11 @@ export default Body = () => {
       <div className="res-container">
         {filteredRestList?.length > 0 ? (
           filteredRestList.map((r) => {
-            return <Link key={r?.data?.id} to={"/restaurants/"+r?.data?.id}><RestaurantCard  resData={r} /> </Link>;
+            return (
+              <Link key={r?.data?.id} to={"/restaurants/" + r?.data?.id}>
+                <RestaurantCard resData={r} />{" "}
+              </Link>
+            );
           })
         ) : (
           <SchimmerCard count={10} />
