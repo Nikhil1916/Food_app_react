@@ -149,3 +149,8 @@ button {
     flex-direction: column;
     gap: 1rem
 }
+
+a {
+    color: black !important;
+    text-decoration: none;
+}
