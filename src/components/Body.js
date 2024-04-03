@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import SchimmerCard from "./SchimmerCard";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 // import { Link } from "react-router-dom";
 
 const searchStyle = {
@@ -51,6 +52,15 @@ export default Body = () => {
       )
     );
   };
+  const isOnline = useOnlineStatus();
+  console.log(isOnline);
+  if(!isOnline) {
+    return (
+      <div>
+        <h1>Looks like You Are Offline!! Please check your connection.</h1>
+      </div>
+    )
+  }
   // console.log("")
   return (
     <div className="body">

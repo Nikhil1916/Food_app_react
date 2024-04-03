@@ -3,21 +3,17 @@ import SchimmerCard from "./SchimmerCard";
 import { useParams } from "react-router-dom";
 import { MENU_API } from "../utils/constant";
 import RestaurantMenuList from "./RestaurantMenuList";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
-  const [restInfo, setRestInfo] = useState(null);
+  // const [restInfo, setRestInfo] = useState(null);
   const [restMenuList, setRestMenuList] = useState([]);
   const [toggle, setToggle] = useState(false);
   const { resId } = useParams();
-  useEffect(() => {
-    fetchMenu();
-  }, []);
-
-  async function fetchMenu() {
-    const data = await fetch(MENU_API + resId);
-    const json = await data.json();
-    setRestInfo(json.data);
-  }
+  const restInfo = useRestaurantMenu(resId);
+  useEffect(()=>{
+    // setRestInfo(restInfo);
+  },[]);
   if (restInfo == null) {
     return <SchimmerCard count={10} />;
   }
@@ -35,7 +31,7 @@ const RestaurantMenu = () => {
   }
 
   const { name, cuisines, costForTwoMessage, city } =
-    restInfo?.cards?. [0]?.card?.card?.info;
+    restInfo?.cards?.[2]?.card?.card?.info;
   if (restMenuList?.length < 2) {
     const { itemCards, title } =
       restInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card
@@ -56,7 +52,7 @@ const RestaurantMenu = () => {
         {cuisines?.join(", ")} - {costForTwoMessage}
       </p>
       <p>{city}</p>
-      {restMenuList?.map((_) => {
+      {restMenuList?.map((_,i) => {
         return (
           <div
             onClick={() => {
@@ -64,7 +60,7 @@ const RestaurantMenu = () => {
               console.log(_);
               setToggle(!toggle);
             }}
-            className="accordion"
+            className="accordion"  key={i}
           >
             <div className="accordion-item">
               <h2 className="accordion-title">{_.title}</h2>
