@@ -3,15 +3,12 @@ import SchimmerCard from "./SchimmerCard";
 import { useParams } from "react-router-dom";
 import { MENU_API } from "../utils/constant";
 import RestaurantMenuList from "./RestaurantMenuList";
-import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
   const [restInfo, setRestInfo] = useState(null);
   const [restMenuList, setRestMenuList] = useState([]);
   const [toggle, setToggle] = useState(false);
   const { resId } = useParams();
-  // const restInfo = useRestaurantMenu(resId);
-  console.log(restInfo);
   useEffect(() => {
     fetchMenu();
   }, []);
@@ -24,11 +21,10 @@ const RestaurantMenu = () => {
   if (restInfo == null) {
     return <SchimmerCard count={10} />;
   }
-  console.log(restInfo);
   const arr = restMenuList;
   if (restMenuList?.length < 2) {
     const { itemCards, title } =
-      restInfo?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1]?.card
+      restInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1]?.card
         ?.card;
     restMenuList?.length < 2 &&
       arr.push({
@@ -39,10 +35,10 @@ const RestaurantMenu = () => {
   }
 
   const { name, cuisines, costForTwoMessage, city } =
-    restInfo?.cards[0]?.card?.card?.info;
+    restInfo?.cards?. [0]?.card?.card?.info;
   if (restMenuList?.length < 2) {
     const { itemCards, title } =
-      restInfo?.cards?.[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card
+      restInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card
         ?.card;
     arr.push({
       itemCards,
@@ -60,9 +56,9 @@ const RestaurantMenu = () => {
         {cuisines?.join(", ")} - {costForTwoMessage}
       </p>
       <p>{city}</p>
-      {restMenuList?.map((_,i) => {
+      {restMenuList?.map((_) => {
         return (
-          <div key={i}
+          <div
             onClick={() => {
               _.is_active = !_.is_active;
               console.log(_);
