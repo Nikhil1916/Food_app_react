@@ -20,7 +20,7 @@ export default Body = () => {
   console.log("rerenderd body?");
 
   const filterFnc = (val) => {
-    return Number(val?.data?.avgRating) >= 4;
+    return Number(val?.data?.avgRating) > 4.3;
   };
   const fetchData = async () => {
     const data = await fetch(
@@ -51,6 +51,7 @@ export default Body = () => {
       )
     );
   };
+  // console.log("")
   return (
     <div className="body">
       <div className="filter" style={searchStyle}>

@@ -49,7 +49,7 @@
 }
 
 .body {
-
+    margin-bottom: 5rem;
     .res-container {
         display: flex;
         flex-wrap: wrap;
@@ -57,14 +57,14 @@
         justify-content: center;
 
         .rest-card {
-            width: 300px;
+            min-width: 350px;
             background-color: #f0f0f0;
             padding: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 5px;
-
+            /* min */
             .rest-img {
                 width: 280px;
             }
@@ -183,3 +183,12 @@ a {
     display: none;
   }
   
+
+  .user-card {
+    margin-top: 1rem;
+    line-height: 2rem;
+    border: 1px solid black;
+    padding: 0.8rem;
+    min-width: 200px;
+    max-width: 500px;
+  }
