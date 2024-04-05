@@ -64,19 +64,19 @@ export default Body = () => {
   // console.log("")
   return (
     <div className="body">
-      <div className="filter" style={searchStyle}>
-        <div className="search">
+      <div className="flex gap-3 justify-center items-center" style={searchStyle}>
+        <div className="search flex gap-2 box-border items-center">
           <input
             placeholder="Search"
             type="text"
-            className="search-box"
+            className=" h-8 grow-0 text-center search-box border border-gray-100 p-1"
             value={searchVal}
             onChange={(e) => {
               setSearchVal(e?.target?.value);
             }}
           />
           <button
-            className="search-btn"
+            className="rounded bg-gray-300 px-4 h-8"
             onClick={() => {
               const filteredRest = restList?.filter(
                 (d) =>
@@ -88,20 +88,20 @@ export default Body = () => {
               setfilteredRestList(filteredRest);
             }}
           >
-            Search
+            <span className="text-white">Search</span>
           </button>
         </div>
         <button
-          className="filter-btn"
+          className="rounded filter-btn bg-gray-300 px-4 h-8"
           onClick={() => {
             const filteredList = restList?.filter(filterFnc);
             setfilteredRestList(filteredList);
           }}
         >
-          Top Rated Restaurants
+          <span className="text-white">Top Rated Restaurants</span>
         </button>
       </div>
-      <div className="res-container">
+      <div className="res-container flex flex-wrap gap-2 justify-center items-center">
         {filteredRestList?.length > 0 ? (
           filteredRestList.map((r) => {
             return (

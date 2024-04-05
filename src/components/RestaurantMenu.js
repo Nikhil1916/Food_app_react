@@ -46,8 +46,8 @@ const RestaurantMenu = () => {
   return restInfo === null ? (
     <SchimmerCard />
   ) : (
-    <div className="rest-menu">
-      <h1>{name}</h1>
+    <div className="rest-menu flex flex-col gap-3 ml-8 mt-8">
+      <h1 className="text-lg font-bold">{name}</h1>
       <p>
         {cuisines?.join(", ")} - {costForTwoMessage}
       </p>
