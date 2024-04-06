@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { MENU_API } from "../utils/constant";
 import RestaurantMenuList from "./RestaurantMenuList";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import SchimmerAccordian from "./SchimmerAccordian";
 
 const RestaurantMenu = () => {
   // const [restInfo, setRestInfo] = useState(null);
@@ -15,7 +16,7 @@ const RestaurantMenu = () => {
     // setRestInfo(restInfo);
   },[]);
   if (restInfo == null) {
-    return <SchimmerCard count={10} />;
+    return <SchimmerAccordian count={10} />;
   }
   const arr = restMenuList;
   if (restMenuList?.length < 2) {
@@ -44,7 +45,7 @@ const RestaurantMenu = () => {
     setRestMenuList(arr);
   }
   return restInfo === null ? (
-    <SchimmerCard />
+    <SchimmerAccordian />
   ) : (
     <div className="rest-menu flex flex-col gap-3 ml-8 mt-8">
       <h1 className="text-lg font-bold">{name}</h1>
