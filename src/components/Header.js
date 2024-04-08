@@ -5,9 +5,9 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 const Header = () => {
   const [btnName, setBtnName] = useState("login");
   const isOnline = useOnlineStatus();
-  console.log(isOnline);
+  console.log(isOnline +" header re remder");
   return (
-    <div className="border border-black">
+    <div className="border bg-slate-200 shadow-md">
       <div className="flex justify-between items-center">
         <div className="logo-cont">
           <img className="w-56" src={LOGO_URL} />

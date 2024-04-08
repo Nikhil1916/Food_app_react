@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import SchimmerCard from "./SchimmerCard";
 import { Link } from "react-router-dom";
-import useOnlineStatus from "../utils/useOnlineStatus";
 // import { Link } from "react-router-dom";
 
 const searchStyle = {
@@ -13,6 +12,9 @@ export default Body = () => {
   const [restList, setRestList] = useState([]);
   const [filteredRestList, setfilteredRestList] = useState([]);
   const [searchVal, setSearchVal] = useState("");
+
+  // high order component
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
   useEffect(() => {
     console.log("Use effect called");
@@ -52,16 +54,7 @@ export default Body = () => {
       )
     );
   };
-  const isOnline = useOnlineStatus();
-  console.log(isOnline);
-  if(!isOnline) {
-    return (
-      <div>
-        <h1>Looks like You Are Offline!! Please check your connection.</h1>
-      </div>
-    )
-  }
-  // console.log("")
+  console.log("Body Re render");
   return (
     <div className="body">
       <div className="flex gap-3 justify-center items-center" style={searchStyle}>
@@ -101,12 +94,16 @@ export default Body = () => {
           <span className="text-white">Top Rated Restaurants</span>
         </button>
       </div>
-      <div className="res-container flex flex-wrap gap-2 justify-center items-center">
+      <div className="res-container flex flex-wrap gap-8 justify-center items-center">
         {filteredRestList?.length > 0 ? (
-          filteredRestList.map((r) => {
+          filteredRestList.map((r, i) => {
+            console.log(r);
             return (
               <Link key={r?.data?.id} to={"/restaurants/" + r?.data?.id}>
-                <RestaurantCard resData={r} />{" "}
+              {/* if the restaurant is promoted then add a promoted label */}
+              {
+                i%3==0 ? <RestaurantCardPromoted resData={r} /> : <RestaurantCard resData={r} />
+              }
               </Link>
             );
           })

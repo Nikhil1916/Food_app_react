@@ -1,74 +1,52 @@
-import { useEffect, useState } from "react";
-import SchimmerCard from "./SchimmerCard";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { MENU_API } from "../utils/constant";
 import RestaurantMenuList from "./RestaurantMenuList";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import SchimmerAccordian from "./SchimmerAccordian";
 
 const RestaurantMenu = () => {
-  // const [restInfo, setRestInfo] = useState(null);
-  const [restMenuList, setRestMenuList] = useState([]);
   const [toggle, setToggle] = useState(false);
   const { resId } = useParams();
   const restInfo = useRestaurantMenu(resId);
-  useEffect(()=>{
-    // setRestInfo(restInfo);
-  },[]);
   if (restInfo == null) {
     return <SchimmerAccordian count={10} />;
   }
-  const arr = restMenuList;
-  if (restMenuList?.length < 2) {
-    const { itemCards, title } =
-      restInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[1]?.card
-        ?.card;
-    restMenuList?.length < 2 &&
-      arr.push({
-        itemCards,
-        title,
-        is_active: true,
-      });
-  }
+  const categories = restInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(c=>c?.card?.card?.['@type'] == 'type.googleapis.com/swiggy.presentation.food.v2.ItemCategory')?.map(c=>c?.card?.card);
+  console.log(categories);
 
   const { name, cuisines, costForTwoMessage, city } =
     restInfo?.cards?.[2]?.card?.card?.info;
-  if (restMenuList?.length < 2) {
-    const { itemCards, title } =
-      restInfo?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card
-        ?.card;
-    arr.push({
-      itemCards,
-      title,
-      is_active: false,
-    });
-    setRestMenuList(arr);
-  }
+
   return restInfo === null ? (
     <SchimmerAccordian />
   ) : (
-    <div className="rest-menu flex flex-col gap-3 ml-8 mt-8">
+    <div className="rest-menu flex flex-col gap-3 ml-8 mt-8 text-center">
       <h1 className="text-lg font-bold">{name}</h1>
-      <p>
+      <p className="font-semibold">
         {cuisines?.join(", ")} - {costForTwoMessage}
       </p>
-      <p>{city}</p>
-      {restMenuList?.map((_,i) => {
+      <p className="font-semibold">{city}</p>
+      {categories?.map((_,i) => {
         return (
-          <div
-            onClick={() => {
-              _.is_active = !_.is_active;
-              console.log(_);
-              setToggle(!toggle);
-            }}
-            className="accordion"  key={i}
-          >
-            <div className="accordion-item">
-              <h2 className="accordion-title">{_.title}</h2>
-              <div className={_.is_active ? "accordion-content" : "d-none"}>
+          <div className="flex justify-center" key={i}>
+          {
+          _?.itemCards?.length > 0 ?
+             <div
+              onClick={() => {
+                _.is_active = !_.is_active;
+                // console.log(_);
+                setToggle(!toggle);
+              }}
+              className="accordion"  key={i}
+            >
+              <div className="accordion-item">
+                <h2 className="accordion-title">{_.title}</h2>
+                <div className={_.is_active ? "accordion-content" : "d-none"}>
                 <RestaurantMenuList itemCards={_.itemCards} />
+                </div>
               </div>
-            </div>
+            </div> : ''
+          }
           </div>
         );
       })}
