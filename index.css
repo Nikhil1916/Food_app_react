@@ -209,7 +209,8 @@ a {
     top: 2rem;
     display: inline-block;
   } 
-  .accordion {
+
+  /* .accordion {
     width: 100%;
     max-width: 500px;
   }
@@ -235,5 +236,5 @@ a {
   }
   .d-none {
     display: none;
-  }
+  } */
   
