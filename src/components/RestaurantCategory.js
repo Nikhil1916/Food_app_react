@@ -4,7 +4,7 @@ import RestaurantMenuList from "./RestaurantMenuList";
 RestaurantCategory = ({ _, i }) => {
   const [toggle, setToggle] = useState(false);
   return (
-    <div className="w-6/12 mx-auto" key={i}>
+    <div className="cursor-pointer w-6/12 mx-auto" key={i}>
       {_?.itemCards?.length > 0 ? (
         <div className="accordion" key={i}>
           <div className="accordion-item shadow-lg my-4">

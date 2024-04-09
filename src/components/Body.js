@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import SchimmerCard from "./SchimmerCard";
 import { Link } from "react-router-dom";
-// import { Link } from "react-router-dom";
 
 const searchStyle = {
   padding: "20px",

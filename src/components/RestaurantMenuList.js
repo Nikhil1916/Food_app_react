@@ -3,7 +3,7 @@ const RestaurantMenuList = (props) => {
   console.log(props);
   const { itemCards } = props;
   return (
-    <div>
+    <>
       <ul>
         {itemCards?.map((data, i) => {
           return (
@@ -28,8 +28,7 @@ const RestaurantMenuList = (props) => {
                   </p>
                 </div>
                 <div className="relative box-border mb-6 w-[25%]">
-                  <img
-                    className="w-[100%] rounded-lg mb-2"
+                  <img className="w-[100%] rounded-lg mb-2"
                     src={
                       CDN_LINK + "a1b474576d7b2801cfd53a77475d5cbe" ||
                       data?.card?.info?.imageId
@@ -44,7 +43,7 @@ const RestaurantMenuList = (props) => {
           );
         })}
       </ul>
-    </div>
+    </>
   );
 };
 

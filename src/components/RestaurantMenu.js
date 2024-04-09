@@ -1,17 +1,14 @@
-import { useState } from "react";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import SchimmerAccordian from "./SchimmerAccordian";
 import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
-  const [toggle, setToggle] = useState(false);
   const { resId } = useParams();
   const restInfo = useRestaurantMenu(resId);
   if (restInfo == null) {
     return (
       <div className="flex justify-center">
-        {" "}
         <SchimmerAccordian count={10} />
       </div>
     );
