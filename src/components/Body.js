@@ -82,6 +82,7 @@ export default Body = () => {
           >
             <span className="text-white">Search</span>
           </button>
+          {/* <input  /> */}
         </div>
         <button
           className="rounded filter-btn bg-gray-300 px-4 h-8"
@@ -92,6 +93,7 @@ export default Body = () => {
         >
           <span className="text-white">Top Rated Restaurants</span>
         </button>
+        
       </div>
       <div className="res-container flex flex-wrap gap-8 justify-center items-center">
         {filteredRestList?.length > 0 ? (

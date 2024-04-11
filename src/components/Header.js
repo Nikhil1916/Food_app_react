@@ -2,11 +2,11 @@ import { useState , useContext } from "react";
 import { LOGO_URL } from "../utils/constant";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
-import userContext from "../utils/userContext";
+import UserContext from "../utils/UserContext";
 const Header = () => {
   const [btnName, setBtnName] = useState("login");
   const isOnline = useOnlineStatus();
-  const data = useContext(userContext);
+  const data = useContext(UserContext);
   console.log(data);
   console.log(isOnline +" header re remder");
   return (

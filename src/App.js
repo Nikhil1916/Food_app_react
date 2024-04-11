@@ -1,6 +1,6 @@
 // RAFCE to make componet shortcut for vs code 
 
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -10,17 +10,36 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import SchimmerCard from "./components/SchimmerCard";
+import UserContext from "./utils/UserContext";
 // import Grocery from "./components/Grocery";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const Grocery = lazy(()=> import("./components/Grocery"));
 const AppLayout = () => {
+
+// authentication
+
+  useEffect(()=>{
+    // make a api call and send username and password
+    const data = {
+      name:"Nikhil"
+    }
+    setUserInfo(data);
+  },[])
+  const [userInfo, setUserInfo] = useState()
+
   return (
+    <UserContext.Provider value={
+      {
+        loggedInUserName: userInfo?.name
+      }
+    }>
     <div className="app">
       <Header />
       {/* */}
       {/* */}
       <Outlet />
     </div>  
+    </UserContext.Provider>
   );
 };
 
