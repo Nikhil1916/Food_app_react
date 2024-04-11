@@ -2,9 +2,12 @@ import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import SchimmerAccordian from "./SchimmerAccordian";
 import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
+  const [showIndex , setShowIndex] = useState(0);
+  console.log(showIndex);
   const restInfo = useRestaurantMenu(resId);
   if (restInfo == null) {
     return (
@@ -21,10 +24,6 @@ const RestaurantMenu = () => {
           "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
       )
       ?.map((c) => c?.card?.card);
-  categories.forEach((cat, i) => {
-    if (i == 0) cat["is_active"] = true;
-    else cat["is_active"] = false;
-  });
   const { name, cuisines, costForTwoMessage, city } =
     restInfo?.cards?.[2]?.card?.card?.info;
   return restInfo === null ? (
@@ -37,7 +36,9 @@ const RestaurantMenu = () => {
       </p>
       <p className="font-semibold">{city}</p>
       {categories?.map((_, i) => {
-        return <RestaurantCategory key={i} _={_} i={i} />;
+
+        {/* controlled component */}
+        return <RestaurantCategory key={i} _={_} index={i} toggle={i==showIndex} showIndex={showIndex} setShowIndex={(ind)=>setShowIndex(ind)} />;
       })}
     </div>
   );

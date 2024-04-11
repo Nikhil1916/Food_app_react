@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useState , useContext } from "react";
 import { LOGO_URL } from "../utils/constant";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import userContext from "../utils/userContext";
 const Header = () => {
   const [btnName, setBtnName] = useState("login");
   const isOnline = useOnlineStatus();
+  const data = useContext(userContext);
+  console.log(data);
   console.log(isOnline +" header re remder");
   return (
     <div className="border bg-slate-200 shadow-md">
@@ -34,9 +37,6 @@ const Header = () => {
               <Link to="/grocery">Grocery</Link>
             </li>
             <li>
-              <Link to="/cart">Cart</Link>
-            </li>
-            <li className="mr-6">
               <button
                 className="login-btn"
                 onClick={() => {
@@ -47,6 +47,9 @@ const Header = () => {
               >
                 {btnName}
               </button>
+            </li>
+            <li className="mr-6 font-bold">
+                {data?.loggedInUserName}
             </li>
           </ul>
         </div>

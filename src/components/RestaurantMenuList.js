@@ -1,6 +1,6 @@
 import { CDN_LINK } from "../utils/constant.js";
 const RestaurantMenuList = (props) => {
-  console.log(props);
+  // console.log(props);
   const { itemCards } = props;
   return (
     <>

@@ -1,20 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import RestaurantMenuList from "./RestaurantMenuList";
 
-RestaurantCategory = ({ _, i }) => {
-  const [toggle, setToggle] = useState(false);
+RestaurantCategory = ({ _, index , toggle, setShowIndex , showIndex}) => {
   return (
-    <div className="cursor-pointer w-6/12 mx-auto" key={i}>
+    <div className="cursor-pointer w-6/12 mx-auto" key={index}>
       {_?.itemCards?.length > 0 ? (
-        <div className="accordion" key={i}>
+        <div className="accordion" key={index}>
           <div className="accordion-item shadow-lg my-4">
-            <div
-              onClick={() => {
-                console.log(_);
-                _.is_active = !_.is_active;
-                setToggle(!toggle);
-              }}
-              className="bg-gray-50 p-4 flex justify-between items-center"
+            <div onClick={()=> {
+              if (index == showIndex) {
+                setShowIndex(null);
+              } else {
+                setShowIndex(index);
+              } 
+            }} className="bg-gray-50 p-4 flex justify-between items-center"
             >
               <h2 className="accordion-title font-bold">
                 {_.title} ({_?.itemCards?.length})
@@ -23,7 +22,7 @@ RestaurantCategory = ({ _, i }) => {
             </div>
             <div
               className={
-                _.is_active
+                toggle
                   ? "accordion-content bg-gray-50 p-4 flex flex-col gap-2 font-normal "
                   : "hidden"
               }
