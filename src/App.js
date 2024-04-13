@@ -10,7 +10,7 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
 import SchimmerCard from "./components/SchimmerCard";
-import UserContext from "./utils/UserContext";
+import UserContext from "./utils/UserContext.js";
 // import Grocery from "./components/Grocery";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const Grocery = lazy(()=> import("./components/Grocery"));
@@ -28,18 +28,25 @@ const AppLayout = () => {
   const [userInfo, setUserInfo] = useState()
 
   return (
+    <div className="app">
     <UserContext.Provider value={
       {
-        loggedInUserName: userInfo?.name
+        loggedInUserName: "smridhi"
       }
     }>
-    <div className="app">
       <Header />
+      </UserContext.Provider>
+    <UserContext.Provider value={
+      {
+        loggedInUserName: userInfo?.name,
+        setUserInfo
+      }
+    }>
       {/* */}
       {/* */}
       <Outlet />
-    </div>  
     </UserContext.Provider>
+    </div>  
   );
 };
 

@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState , useContext } from "react";
 import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import SchimmerCard from "./SchimmerCard";
 import { Link } from "react-router-dom";
+import UserContext from "../utils/UserContext.js";
 
 const searchStyle = {
   padding: "20px",
@@ -14,7 +15,7 @@ export default Body = () => {
 
   // high order component
   const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
-
+  const {loggedInUserName, setUserInfo} = useContext(UserContext);
   useEffect(() => {
     console.log("Use effect called");
     fetchData();
@@ -76,13 +77,12 @@ export default Body = () => {
                     ?.toLowerCase()
                     ?.indexOf(searchVal?.toLocaleLowerCase()) > -1
               );
-              console.log(filteredRest);
+              // console.log(filteredRest);
               setfilteredRestList(filteredRest);
             }}
           >
             <span className="text-white">Search</span>
           </button>
-          {/* <input  /> */}
         </div>
         <button
           className="rounded filter-btn bg-gray-300 px-4 h-8"
@@ -93,12 +93,16 @@ export default Body = () => {
         >
           <span className="text-white">Top Rated Restaurants</span>
         </button>
+        <input className="h-8 grow-0 text-center search-box border border-gray-100 p-1" value={loggedInUserName} onChange={(e)=>{
+          console.log(e.target.value);
+          setUserInfo({name:e?.target?.value});
+        }} />
         
       </div>
       <div className="res-container flex flex-wrap gap-8 justify-center items-center">
         {filteredRestList?.length > 0 ? (
           filteredRestList.map((r, i) => {
-            console.log(r);
+            {/* console.log(r); */}
             return (
               <Link key={r?.data?.id} to={"/restaurants/" + r?.data?.id}>
               {/* if the restaurant is promoted then add a promoted label */}
