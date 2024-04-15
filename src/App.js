@@ -12,6 +12,9 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import SchimmerCard from "./components/SchimmerCard";
 import UserContext from "./utils/UserContext.js";
 // import Grocery from "./components/Grocery";
+import Cart from "./components/Cart.js";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore.js";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const Grocery = lazy(()=> import("./components/Grocery"));
 const AppLayout = () => {
@@ -28,10 +31,11 @@ const AppLayout = () => {
   const [userInfo, setUserInfo] = useState()
 
   return (
+    <Provider store={appStore}>
     <div className="app">
     <UserContext.Provider value={
       {
-        loggedInUserName: "smridhi"
+        loggedInUserName: "tanya"
       }
     }>
       <Header />
@@ -47,6 +51,7 @@ const AppLayout = () => {
       <Outlet />
     </UserContext.Provider>
     </div>  
+    </Provider>
   );
 };
 
@@ -76,6 +81,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/grocery",
         element: <Suspense fallback={<SchimmerCard count={10} />}><Grocery/></Suspense>
+      },
+      {
+        path: "/cart",
+        element: <Cart/>
       }
 
     ],

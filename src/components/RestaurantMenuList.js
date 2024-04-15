@@ -1,6 +1,18 @@
-import { CDN_LINK } from "../utils/constant.js";
-const RestaurantMenuList = (props) => {
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice.js";
+
+const ItemsList = (props) => {
+  console.log(props);
   const { itemCards } = props;
+  let { showAdd } = props;
+  showAdd = showAdd == undefined ? true : false;
+  console.log(showAdd, 'showAdd');
+  const dispatch = useDispatch();
+  const handleAddItem = (data) => {
+    console.log(data);
+    //dispatch an action
+    dispatch(addItem(data));
+  }
   return (
     <>
       <ul>
@@ -10,8 +22,8 @@ const RestaurantMenuList = (props) => {
               style={{ lineHeight: "2em" }}
               key={data?.card?.info?.id}
               className={
-                "my-1 text-left w-[75%]" +
-                (i == 0 ? "border-b-8" : "border-b-2")
+                " text-left w-[75%] border-b-2 my-4"
+                // (i == 0 ? "border-b-4" : "border-b-2")
               }
             >
               <div className="flex justify-between items-center">
@@ -35,9 +47,12 @@ const RestaurantMenuList = (props) => {
                     // doing this as swiggy api is not working
                     src={require("../utils/foodimg.avif")}
                   />
-                  <button className="bg-slate-50 text-green-600 p-1 w-[4rem] border rounded absolute bottom-[-15px] left-[55px] shadow-lg">
-                    Add
-                  </button>
+                  {
+                    showAdd ?  <button onClick={()=>handleAddItem(data)} className="bg-slate-50 text-green-600 p-1 w-[4rem] border rounded absolute bottom-[-15px] left-[45px] shadow-lg">
+                    Add+
+                  </button>: ''
+                  }
+                 
                 </div>
               </div>
             </li>
@@ -48,4 +63,4 @@ const RestaurantMenuList = (props) => {
   );
 };
 
-export default RestaurantMenuList;
+export default ItemsList;

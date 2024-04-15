@@ -1,5 +1,5 @@
 import React from "react";
-import RestaurantMenuList from "./RestaurantMenuList";
+import ItemsList from "./RestaurantMenuList";
 
 RestaurantCategory = ({ _, index , toggle, setShowIndex , showIndex}) => {
   return (
@@ -27,7 +27,7 @@ RestaurantCategory = ({ _, index , toggle, setShowIndex , showIndex}) => {
                   : "hidden"
               }
             >
-              <RestaurantMenuList itemCards={_.itemCards} />
+              <ItemsList itemCards={_.itemCards} />
             </div>
           </div>
         </div>
