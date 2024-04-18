@@ -2,7 +2,6 @@ import { useDispatch } from "react-redux";
 import { addItem } from "../utils/cartSlice.js";
 
 const ItemsList = (props) => {
-  console.log(props);
   const { itemCards } = props;
   let { showAdd } = props;
   showAdd = showAdd == undefined ? true : false;
@@ -22,8 +21,7 @@ const ItemsList = (props) => {
               style={{ lineHeight: "2em" }}
               key={data?.card?.info?.id}
               className={
-                " text-left w-[75%] border-b-2 my-4"
-                // (i == 0 ? "border-b-4" : "border-b-2")
+                "my-1 text-left border-b-2"
               }
             >
               <div className="flex justify-between items-center">
@@ -47,12 +45,11 @@ const ItemsList = (props) => {
                     // doing this as swiggy api is not working
                     src={require("../utils/foodimg.avif")}
                   />
-                  {
-                    showAdd ?  <button onClick={()=>handleAddItem(data)} className="bg-slate-50 text-green-600 p-1 w-[4rem] border rounded absolute bottom-[-15px] left-[45px] shadow-lg">
+                   {
+                    showAdd ?  <button onClick={()=>handleAddItem(data)} className="bg-slate-50 text-green-600 p-1 w-[4rem] border rounded absolute bottom-[-15px] left-[65px] shadow-lg">
                     Add+
                   </button>: ''
                   }
-                 
                 </div>
               </div>
             </li>
