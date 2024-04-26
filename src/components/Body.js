@@ -23,7 +23,7 @@ const Body = () => {
   // console.log("rerenderd body?");
 
   const filterFnc = (val) => {
-    console.log(val?.data?.avgRating>4.3);
+    // console.log(val?.data?.avgRating>4.3);
     return Number(val?.data?.avgRating) > 4.3;
   };
   const fetchData = async () => {

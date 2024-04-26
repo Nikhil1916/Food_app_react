@@ -1,5 +1,5 @@
 import React from "react";
-import ItemsList from "./RestaurantMenuList";
+import ItemsList from "./ItemsList";
 
 const RestaurantCategory = ({ _, index , toggle, setShowIndex , showIndex}) => {
   return (
@@ -20,6 +20,7 @@ const RestaurantCategory = ({ _, index , toggle, setShowIndex , showIndex}) => {
               </h2>
               <span className="font-bold">^</span>
             </div>
+            
             <div
               className={
                 toggle
@@ -27,7 +28,7 @@ const RestaurantCategory = ({ _, index , toggle, setShowIndex , showIndex}) => {
                   : "hidden"
               }
             >
-              <ItemsList itemCards={_.itemCards} />
+              {toggle && <ItemsList itemCards={_.itemCards} />}
             </div>
           </div>
         </div>
