@@ -8,10 +8,10 @@ const Header = () => {
   const [btnName, setBtnName] = useState("login");
   const isOnline = useOnlineStatus();
   const data = useContext(UserContext);
-  console.log(data);
-  console.log(isOnline +" header re remder");
+  // console.log(data);
+  // console.log(isOnline +" header re remder");
   const cartItems = useSelector((store)=>store.cart.items);
-  console.log(cartItems);
+  // console.log(cartItems);
   return (
     <div className="border bg-slate-200 shadow-md">
       <div className="flex justify-between items-center">

@@ -8,7 +8,7 @@ const searchStyle = {
   padding: "20px",
 };
 
-export default Body = () => {
+const Body = () => {
   const [restList, setRestList] = useState([]);
   const [filteredRestList, setfilteredRestList] = useState([]);
   const [searchVal, setSearchVal] = useState("");
@@ -17,12 +17,13 @@ export default Body = () => {
   const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
   const {loggedInUserName, setUserInfo} = useContext(UserContext);
   useEffect(() => {
-    console.log("Use effect called");
+    // console.log("Use effect called");
     fetchData();
   }, []);
-  console.log("rerenderd body?");
+  // console.log("rerenderd body?");
 
   const filterFnc = (val) => {
+    console.log(val?.data?.avgRating>4.3);
     return Number(val?.data?.avgRating) > 4.3;
   };
   const fetchData = async () => {
@@ -54,7 +55,7 @@ export default Body = () => {
       )
     );
   };
-  console.log("Body Re render");
+  // console.log("Body Re render");
   return (
     <div className="body">
       <div className="flex gap-3 justify-center items-center" style={searchStyle}>
@@ -62,7 +63,8 @@ export default Body = () => {
           <input
             placeholder="Search"
             type="text"
-            className=" h-8 grow-0 text-center search-box border border-gray-100 p-1"
+            data-testid="searchInput"
+            className="h-8 grow-0 text-center search-box border border-gray-100 p-1"
             value={searchVal}
             onChange={(e) => {
               setSearchVal(e?.target?.value);
@@ -84,17 +86,18 @@ export default Body = () => {
             <span className="text-white">Search</span>
           </button>
         </div>
+        {filteredRestList.length}
         <button
-          className="rounded filter-btn bg-gray-300 px-4 h-8"
+          className="rounded filter-btn bg-gray-300 px-4 h-8 text-white"
           onClick={() => {
             const filteredList = restList?.filter(filterFnc);
             setfilteredRestList(filteredList);
           }}
         >
-          <span className="text-white">Top Rated Restaurants</span>
+        Top Rated Restaurants
         </button>
         <input className="h-8 grow-0 text-center search-box border border-gray-100 p-1" value={loggedInUserName} onChange={(e)=>{
-          console.log(e.target.value);
+          // console.log(e.target.value);
           setUserInfo({name:e?.target?.value});
         }} />
         
@@ -119,3 +122,4 @@ export default Body = () => {
     </div>
   );
 };
+export default Body;

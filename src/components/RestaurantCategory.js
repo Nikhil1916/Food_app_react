@@ -1,7 +1,7 @@
 import React from "react";
 import ItemsList from "./RestaurantMenuList";
 
-RestaurantCategory = ({ _, index , toggle, setShowIndex , showIndex}) => {
+const RestaurantCategory = ({ _, index , toggle, setShowIndex , showIndex}) => {
   return (
     <div className="cursor-pointer w-6/12 mx-auto" key={index}>
       {_?.itemCards?.length > 0 ? (
