@@ -96,7 +96,7 @@ const Body = () => {
         >
         Top Rated Restaurants
         </button>
-        <input className="h-8 grow-0 text-center search-box border border-gray-100 p-1" value={loggedInUserName} onChange={(e)=>{
+        <input className="h-8 grow-0 text-center search-box border border-gray-100 p-1" value={loggedInUserName??''} onChange={(e)=>{
           // console.log(e.target.value);
           setUserInfo({name:e?.target?.value});
         }} />

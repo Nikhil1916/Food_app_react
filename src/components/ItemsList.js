@@ -6,7 +6,7 @@ const ItemsList = (props) => {
   const { itemCards } = props;
   let { showAdd } = props;
   showAdd = showAdd == undefined ? true : false;
-  console.log(showAdd, 'showAdd');
+  // console.log(showAdd, 'showAdd');
   const dispatch = useDispatch();
   const handleAddItem = (data) => {
     console.log(data);

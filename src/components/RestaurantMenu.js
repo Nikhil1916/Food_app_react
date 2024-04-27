@@ -9,7 +9,7 @@ const RestaurantMenu = () => {
   const [showIndex , setShowIndex] = useState(0);
   // console.log(showIndex);
   const restInfo = useRestaurantMenu(resId);
-  console.log(restInfo, " ----->rest info<----- ");
+  // console.log(restInfo, " ----->rest info<----- ");
   if (restInfo == null) {
     return (
       <div className="flex justify-center">
